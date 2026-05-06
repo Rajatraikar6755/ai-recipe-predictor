@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { mealPlanService, recipeService } from '../services';
+import { mealPlanService } from '../services';
+import { useRecipes } from '../context/RecipeContext';
 import toast from 'react-hot-toast';
 import Spinner from './ui/Spinner';
 
@@ -37,7 +38,7 @@ export default function MealPlanner() {
 
   // Modal state for editing a cell
   const [editCell, setEditCell] = useState(null); // { dayIndex, mealType }
-  const [savedRecipes, setSavedRecipes] = useState([]);
+  const { savedRecipes, fetchSavedRecipes } = useRecipes();
   const [cellDraft, setCellDraft] = useState({ customMeal: '', notes: '', recipeId: null, recipeTitle: '' });
 
   // Load meal plan from API
@@ -62,15 +63,11 @@ export default function MealPlanner() {
     fetchPlan();
   }, []);
 
-  // Load saved recipes for picker
+  // Ensure saved recipes are loaded
   useEffect(() => {
-    const loadRecipes = async () => {
-      try {
-        const res = await recipeService.getSavedRecipes({ limit: 50 });
-        if (res.success) setSavedRecipes(res.data.recipes || []);
-      } catch { /* silent */ }
-    };
-    loadRecipes();
+    if (savedRecipes.length === 0) {
+      fetchSavedRecipes({ limit: 50 });
+    }
   }, []);
 
   // Save entire plan to API
