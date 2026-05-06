@@ -80,7 +80,9 @@ export const chatService = {
 
 export const mealPlanService = {
   getMealPlan: async (weekStart) => {
-    const response = await api.get('/mealplan', { params: weekStart ? { weekStart } : {} });
+    const response = await api.get('/mealplan', { 
+      params: weekStart ? { weekStart, t: Date.now() } : { t: Date.now() } 
+    });
     return response.data;
   },
 
