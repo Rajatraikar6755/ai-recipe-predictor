@@ -5,12 +5,10 @@ import { authService } from '../services';
 import { useRecipes } from '../context/RecipeContext';
 import toast from 'react-hot-toast';
 import Spinner from '../components/ui/Spinner';
+import MealPlanner from '../components/MealPlanner';
 
 const DIETARY_OPTIONS = ['vegetarian', 'vegan', 'gluten-free', 'dairy-free', 'keto', 'paleo', 'halal', 'kosher'];
 const SKILL_LEVELS = ['beginner', 'intermediate', 'advanced'];
-
-const DAYS = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-const MEAL_TYPES = ['breakfast', 'lunch', 'dinner'];
 
 export default function Dashboard() {
   const { user, updateUser } = useAuth();
@@ -182,46 +180,10 @@ export default function Dashboard() {
               ))}
             </motion.div>
 
-            {/* Weekly Meal Planner */}
+            {/* Weekly Meal Planner — fully interactive */}
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }} className="glass-card p-6">
-              <h3 className="font-display text-xl font-bold text-white mb-4 flex items-center gap-2">
-                <span>📅</span> Weekly Meal Planner
-              </h3>
-
-              <div className="overflow-x-auto">
-                <table className="w-full min-w-[500px]">
-                  <thead>
-                    <tr>
-                      <th className="text-left text-dark-500 text-xs font-medium pb-3 pr-4 w-20">Day</th>
-                      {MEAL_TYPES.map(m => (
-                        <th key={m} className="text-center text-dark-500 text-xs font-medium pb-3 px-2 capitalize">{m}</th>
-                      ))}
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {DAYS.map((day, i) => (
-                      <tr key={day} className={i < DAYS.length - 1 ? 'border-b border-dark-800' : ''}>
-                        <td className="py-3 pr-4">
-                          <span className="text-dark-400 text-sm font-medium">{day.slice(0, 3)}</span>
-                        </td>
-                        {MEAL_TYPES.map(meal => (
-                          <td key={meal} className="py-3 px-2 text-center">
-                            <div className="min-h-[36px] bg-dark-800/50 rounded-lg border border-dashed border-dark-700 
-                              hover:border-primary-500/30 transition-colors cursor-pointer flex items-center justify-center
-                              text-dark-600 text-xs hover:text-dark-400">
-                              +
-                            </div>
-                          </td>
-                        ))}
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-              <p className="text-dark-600 text-xs mt-3 text-center">
-                Meal planner — drag saved recipes or click to add meals
-              </p>
+              transition={{ delay: 0.2 }}>
+              <MealPlanner />
             </motion.div>
 
             {/* Dietary preferences display */}
