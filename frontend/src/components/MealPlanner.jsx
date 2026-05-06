@@ -1,8 +1,8 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { mealPlanService, recipeService } from '../services';
 import toast from 'react-hot-toast';
-import Spinner from '../ui/Spinner';
+import Spinner from './ui/Spinner';
 
 const DAYS = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 const MEAL_TYPES = ['breakfast', 'lunch', 'dinner'];
