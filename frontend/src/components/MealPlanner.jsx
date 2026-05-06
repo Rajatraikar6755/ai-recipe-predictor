@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { mealPlanService, recipeService } from '../../services';
+import { mealPlanService, recipeService } from '../services';
 import toast from 'react-hot-toast';
 import Spinner from '../ui/Spinner';
 
