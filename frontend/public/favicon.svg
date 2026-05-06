@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <linearGradient id="primaryGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#10b981" />
+      <stop offset="100%" stop-color="#059669" />
+    </linearGradient>
+    <linearGradient id="accentGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f59e0b" />
+      <stop offset="100%" stop-color="#d97706" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background Base -->
+  <rect width="100" height="100" rx="24" fill="#111827" />
+  
+  <!-- Chef Hat Base -->
+  <path d="M25 65 h50 v15 q0 5 -5 5 h-40 q-5 0 -5 -5 z" fill="url(#primaryGrad)" />
+  
+  <!-- Chef Hat Puffs -->
+  <path d="M25 66 c0-20 -15-20 -10-35 c5-15 25-15 35-25 c10 10 30 10 35 25 c5 15 -10 15 -10 35 z" fill="url(#primaryGrad)" />
+
+  <!-- AI Brain/Circuit Lines on Hat -->
+  <path d="M40 50 l10 -15 l10 10" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" opacity="0.8"/>
+  <circle cx="40" cy="50" r="3" fill="#ffffff" />
+  <circle cx="50" cy="35" r="3" fill="#ffffff" />
+  <circle cx="60" cy="45" r="3" fill="#ffffff" />
+
+  <!-- AI Sparkle/Star -->
+  <path d="M70 20 q5 0 5 -5 q0 5 5 5 q-5 0 -5 5 q0 -5 -5 -5 z" fill="url(#accentGrad)" />
+  <path d="M20 30 q3 0 3 -3 q0 3 3 3 q-3 0 -3 3 q0 -3 -3 -3 z" fill="url(#accentGrad)" />
+</svg>
