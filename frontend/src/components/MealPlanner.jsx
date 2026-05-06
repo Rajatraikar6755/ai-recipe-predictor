@@ -49,7 +49,14 @@ export default function MealPlanner() {
         const res = await mealPlanService.getMealPlan(weekStart.toISOString());
         if (res.success) {
           if (res.data.mealPlan?.days?.length > 0) {
-            setDays(res.data.mealPlan.days);
+            const normalizedDays = res.data.mealPlan.days.map(d => ({
+              ...d,
+              breakfast: { ...d.breakfast, recipeId: d.breakfast.recipeId?._id || d.breakfast.recipeId },
+              lunch: { ...d.lunch, recipeId: d.lunch.recipeId?._id || d.lunch.recipeId },
+              dinner: { ...d.dinner, recipeId: d.dinner.recipeId?._id || d.dinner.recipeId },
+              snacks: (d.snacks || []).map(s => ({ ...s, recipeId: s.recipeId?._id || s.recipeId })),
+            }));
+            setDays(normalizedDays);
           } else if (res.data.template) {
             setDays(res.data.template);
           }
